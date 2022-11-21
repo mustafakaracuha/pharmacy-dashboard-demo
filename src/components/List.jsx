@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // React Icons
@@ -13,11 +13,19 @@ export default function List() {
 
   const [searchToggle, setSearchToggle] = useState(false);
   const dispatch = useDispatch();
+  const searchRef = useRef(null)
+
 
   useEffect(() => {
     dispatch(selectPharm(pharmList[0]));
     dispatch(loadList(pharmList));
   }, []);
+
+  useEffect(() => {
+    if (searchToggle) {
+      searchRef.current.focus();
+    }
+  }, [searchToggle]);
 
   const handleSelectedPharm = (element) => {
     dispatch(selectPharm(element));
@@ -69,7 +77,7 @@ export default function List() {
         <div className="w-full flex items-center relative">
           <span>
           <IoCloseCircle
-            onClick={()=> { setSearchToggle(!searchToggle); dispatch(loadList(pharmList))}}
+            onClick={()=> { setSearchToggle(!searchToggle);  dispatch(loadList(pharmList));}}
             className="text-red-400 dark:text-red-500 absolute top-3 -left-2 cursor-pointer transition ease-in-out hover:text-red-500"
             size={26}
           />
@@ -79,6 +87,7 @@ export default function List() {
             size={26}
           />
           <input
+            ref={searchRef}
             placeholder="Search Pharmacies"
             onChange={(e) => handleSearchPharm(e.target.value.toLowerCase())}
             className="w-full p-5 text-gray-500 bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:placeholder:text-gray-400 placeholder:text-gray-400 rounded-[15px] mt-6 outline-none"

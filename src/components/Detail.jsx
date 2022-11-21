@@ -6,7 +6,7 @@ export default function Detail() {
 
   return (
     <>
-      <div className="w-full h-[90px] flex items-center justify-between rounded-[20px] mt-2 dark:bg-transparent">
+      <div className="w-full md:h-[70px] flex items-center justify-between rounded-[20px] mt-2 dark:bg-transparent">
         <div className="w-72 flex items-center">
           <div className="w-20 h-20 flex items-center justify-center rounded-2xl dark:bg-transparent">
             <img src={selectedPharm.image} className="w-10 h-10" />
@@ -31,7 +31,7 @@ export default function Detail() {
       </div>
 
       <div className="w-full flex justify-around mt-14">
-        <div className="w-40 h-32 mt-10 flex items-center justify-center">
+        <div className="2xl:w-40 2xl:h-40 md:h-[60px] md:w-[60px] md:mt-5 xl flex items-center justify-center">
           <img src={selectedPharm.medicines?.images} />
         </div>
         <table className="w-[500px] text-left h-16">
