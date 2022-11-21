@@ -55,7 +55,7 @@ export default function List() {
           <BiSearch
             className={`${
               searchToggle
-                ? "cursor-pointer text-black dark:text-gray-200"
+                ? "cursor-pointer text-black dark:text-gray-100"
                 : "cursor-pointer text-gray-400 transition ease-in-out duration-200 dark:hover:text-gray-300"
             }`}
             size={20}

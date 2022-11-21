@@ -47,8 +47,8 @@ export default function Map() {
         animateRef={animateRef}
         center={position}
         zoom={13}
+        className="lg:h-[200px] 2xl:h-[300px]"
         scrollWheelZoom={false}
-        style={{ height: "300px" }}
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         <Marker style={{ width: "20px" }} position={position} icon={icon}>

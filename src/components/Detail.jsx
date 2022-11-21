@@ -31,7 +31,7 @@ export default function Detail() {
       </div>
 
       <div className="w-full flex justify-around mt-14">
-        <div className="2xl:w-40 2xl:h-40 md:h-[60px] md:w-[60px] md:mt-5 xl flex items-center justify-center">
+        <div className="2xl:w-36 2xl:h-36 md:h-[60px] md:w-[60px] md:mt-5 xl flex items-center justify-center">
           <img src={selectedPharm.medicines?.images} />
         </div>
         <table className="w-[500px] text-left h-16">
