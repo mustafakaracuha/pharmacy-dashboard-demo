@@ -23,5 +23,5 @@
 
 ### Screenshot
 
-<img align="center" width="500" width="500"  src="" alt="muskaracuha" />
+<img align="center" width="500" width="500"  src="https://github.com/mustafakaracuha/pharmacy-dashboard-demo/blob/main/src/assets/screenshots/app.gif" alt="muskaracuha" />
  
