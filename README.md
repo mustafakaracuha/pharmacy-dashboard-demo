@@ -1,7 +1,7 @@
 
 # Pharmacy App Dashboard
 
-## Technologies and tools
+## Technologies and Libraries
 
 - ⚙️ React Js 
 - 💾 Redux Tool Kit
