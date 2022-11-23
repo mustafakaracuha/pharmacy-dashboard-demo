@@ -7,6 +7,8 @@
 - 💾 Redux Tool Kit
 - 🚐 Tailwind CSS
 - 🎨 React Icons
+- 🗾 React Leaflet Maps
+- 😎 Dark Mode
 
 ### Live
 
@@ -19,7 +21,7 @@
 <br/>
 ⚡️  npm install <br/>
 ⚡️  npm start <br/>
-💥 enjoy 
+💥 enjoy 🌋
 
 ### Screenshot
 
