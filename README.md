@@ -1,5 +1,5 @@
 
-# Pharmacy App Dashboard
+# Pharmacy App Dashboard Demo
 
 ## Technologies and Libraries
 
