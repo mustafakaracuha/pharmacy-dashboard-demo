@@ -17,13 +17,10 @@ const icon = L.icon({
 export default function Map() {
   const { pharmList, selectedPharm } = useSelector((state) => state.pharm);
   const [position, setPosition] = useState({
-    lat: selectedPharm.latitude
-      ? selectedPharm.latitude
-      : pharmList[0].latitude,
-    lng: selectedPharm.longitude
-      ? selectedPharm.longitude
-      : pharmList[0].longitude,
+    lat: selectedPharm.latitude ? selectedPharm.latitude : pharmList[0].latitude,
+    lng: selectedPharm.longitude ? selectedPharm.longitude : pharmList[0].longitude,
   });
+  
   const animateRef = useRef(false);
 
   useEffect(() => {
