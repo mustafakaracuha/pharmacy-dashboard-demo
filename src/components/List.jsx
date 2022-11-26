@@ -14,9 +14,7 @@ import {
 } from "../stores/features/pharm";
 
 export default function List() {
-  const { pharmList, newList, selectedPharm } = useSelector(
-    (state) => state.pharm
-  );
+  const { pharmList, newList, selectedPharm } = useSelector((state) => state.pharm);
 
   const [searchToggle, setSearchToggle] = useState(false);
   const [sort, setSort] = useState(false);
