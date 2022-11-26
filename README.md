@@ -1,12 +1,14 @@
 
-# Pharmacy App Dashboard
+# Pharmacy App Dashboard Demo
 
-## Technologies and tools
+## Technologies and Libraries
 
 - ⚙️ React Js 
 - 💾 Redux Tool Kit
 - 🚐 Tailwind CSS
 - 🎨 React Icons
+- 🗾 React Leaflet Maps
+- 😎 Dark Mode
 
 ### Live
 
@@ -19,9 +21,9 @@
 <br/>
 ⚡️  npm install <br/>
 ⚡️  npm start <br/>
-💥 enjoy 
+💥 enjoy 🌋
 
 ### Screenshot
 
-<img align="center" width="500" width="500"  src="" alt="muskaracuha" />
+<img align="center" width="900" width="900"  src="https://github.com/mustafakaracuha/pharmacy-dashboard-demo/blob/main/src/assets/screenshots/app.gif" alt="muskaracuha" />
  
