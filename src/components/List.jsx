@@ -2,19 +2,26 @@ import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // React Icons
-import { BiSearch, BiMenuAltLeft} from "react-icons/bi";
-import { IoCloseCircle} from "react-icons/io5";
-import { BsFillTelephoneFill } from "react-icons/bs";
+import { BiSearch } from "react-icons/bi";
+import { IoCloseCircle } from "react-icons/io5";
+import { BsFillTelephoneFill, BsSortUpAlt, BsSortDown } from "react-icons/bs";
 
-import { selectPharm, searchPharm, loadList } from "../stores/features/pharm";
+import {
+  selectPharm,
+  searchPharm,
+  sortPharm,
+  loadList,
+} from "../stores/features/pharm";
 
 export default function List() {
-  const { pharmList, newList, selectedPharm } = useSelector((state) => state.pharm);
+  const { pharmList, newList, selectedPharm } = useSelector(
+    (state) => state.pharm
+  );
 
   const [searchToggle, setSearchToggle] = useState(false);
+  const [sort, setSort] = useState(false);
   const dispatch = useDispatch();
-  const searchRef = useRef(null)
-
+  const searchRef = useRef(null);
 
   useEffect(() => {
     dispatch(selectPharm(pharmList[0]));
@@ -35,6 +42,11 @@ export default function List() {
     dispatch(searchPharm(value));
   };
 
+  const handleSortPharm = () => {
+    setSort(!sort);
+    dispatch(sortPharm());
+  };
+
   return (
     <>
       {/* Menu Items */}
@@ -49,7 +61,10 @@ export default function List() {
       {/* Bar Items */}
       <div className="w-full flex items-center justify-between mt-10">
         <p className="flex font-light items-center text-2xl dark:text-gray-300">
-          <span className="text-2xl font-bold mr-2 dark:text-gray-300">{searchToggle ? newList.length : pharmList.length}</span>{searchToggle ? 'Search result' : 'Results' }
+          <span className="text-2xl font-bold mr-2 dark:text-gray-300">
+            {searchToggle ? newList.length : pharmList.length}
+          </span>
+          {searchToggle ? "Search result" : "Results"}
         </p>
         <div className="w-52 flex items-center justify-around text-sm font-medium">
           <BiSearch
@@ -61,10 +76,24 @@ export default function List() {
             size={20}
             onClick={() => setSearchToggle(!searchToggle)}
           />
-          <BiMenuAltLeft
-            className="cursor-pointer -rotate-180 text-black transition ease-in-out duration-200 dark:text-gray-300"
-            size={20}
-          />
+          {sort ? (
+            <BsSortUpAlt
+              className={`${
+                sort
+                  ? "cursor-pointer  text-black dark:text-gray-100"
+                  : "cursor-pointer  text-gray-400 transition ease-in-out duration-200 hover:text-black dark:hover:text-gray-300"
+              }`}
+              size={20}
+              onClick={() => handleSortPharm()}
+            />
+          ) : (
+            <BsSortDown
+              className="cursor-pointer  text-black dark:text-gray-100 transition ease-in-out duration-200 dark:hover:text-gray-300"
+              size={20}
+              onClick={() => handleSortPharm()}
+            />
+          )}
+
           <p className="cursor-pointer text-gray-400 transition ease-in-out duration-200 hover:text-black dark:hover:text-gray-300">
             Open
           </p>
@@ -76,11 +105,14 @@ export default function List() {
       {searchToggle && (
         <div className="w-full flex items-center relative">
           <span>
-          <IoCloseCircle
-            onClick={()=> { setSearchToggle(!searchToggle);  dispatch(loadList(pharmList));}}
-            className="text-red-400 dark:text-red-500 absolute top-3 -left-2 cursor-pointer transition ease-in-out hover:text-red-500"
-            size={26}
-          />
+            <IoCloseCircle
+              onClick={() => {
+                setSearchToggle(!searchToggle);
+                dispatch(loadList(pharmList));
+              }}
+              className="text-red-400 dark:text-red-500 absolute top-3 -left-2 cursor-pointer transition ease-in-out hover:text-red-500"
+              size={26}
+            />
           </span>
           <BiSearch
             className="text-gray-500 absolute right-5 top-11"
@@ -100,8 +132,8 @@ export default function List() {
           <div
             className={`${
               selectedPharm.id === element.id
-                ? "w-full h-20 flex items-center justify-between rounded-[20px] bg-[#CEECF9] dark:bg-sky-800 transition duration-200 ease-in-out cursor-pointer pr-10"
-                : "w-full h-20 group/call flex items-center justify-between rounded-[20px] dark:bg-transparent bg-white transition duration-200 ease-in-out dark:hover:bg-sky-800 hover:bg-[#CEECF9] cursor-pointer pr-10"
+                ? "w-full p-4 flex items-center justify-between rounded-[20px] bg-[#CEECF9] dark:bg-sky-800 gap-x-6 transition duration-200 ease-in-out cursor-pointer pr-10"
+                : "w-full p-4 group/call flex items-center justify-between rounded-[20px] dark:bg-transparent bg-white transition duration-200 ease-in-out dark:hover:bg-sky-800 hover:bg-[#CEECF9] cursor-pointer pr-10"
             }`}
             key={index}
             onClick={() => handleSelectedPharm(element)}
@@ -111,8 +143,12 @@ export default function List() {
                 <img src={element.image} className="w-8 h-8" />
               </div>
               <div className="ml-5">
-                <p className="text-md font-bold dark:text-gray-300">{element.title}</p>
-                <p className="text-gray-500 dark:text-gray-400">{element.adress}</p>
+                <p className="text-md font-bold dark:text-gray-300">
+                  {element.title}
+                </p>
+                <p className="text-gray-500 dark:text-gray-400">
+                  {element.adress}
+                </p>
               </div>
             </div>
             <li
@@ -122,13 +158,18 @@ export default function List() {
                   : "list-disc float-right text-sm text-red-500"
               }`}
             >
-
-              <span className="text-gray-500 text-md dark:text-gray-400">{element.time}</span>
+              <span className="text-gray-500 text-md dark:text-gray-400">
+                {element.time}
+              </span>
             </li>
-            <button 
-            onClick={() => window.open(`tel:${element.number}`)}
-            className="w-20 h-12 bg-white dark:bg-gray-800 flex items-center justify-center text-sky-500 dark:text-sky-600 rounded-[15px]">
-              <BsFillTelephoneFill className="mr-2 dark:text-sky-600 text-[#008fff]"  size={19} />
+            <button
+              onClick={() => window.open(`tel:${element.number}`)}
+              className="w-20 h-12 bg-white dark:bg-gray-800 flex items-center justify-center text-sky-500 dark:text-sky-600 rounded-[15px]"
+            >
+              <BsFillTelephoneFill
+                className="mr-2 dark:text-sky-600 text-[#008fff]"
+                size={19}
+              />
               <span
                 className={`${
                   selectedPharm.id === element.id

@@ -5,7 +5,7 @@ const initialState = {
   pharmList: LIST_ITEMS,
   newList: [],
   selectedPharm: {},
-  isDarkMode : false
+  isDarkMode: false,
 };
 
 const pharmSlice = createSlice({
@@ -17,11 +17,17 @@ const pharmSlice = createSlice({
     },
 
     loadList: (state, action) => {
-      state.newList = action.payload
+      state.newList = action.payload;
     },
 
     searchPharm: (state, action) => {
-      state.newList = state.pharmList.filter(item => item.title.toLowerCase().includes(action.payload));
+      state.newList = state.pharmList.filter((item) =>
+        item.title.toLowerCase().includes(action.payload)
+      );
+    },
+
+    sortPharm: (state, action) => {
+      state.newList = state.newList.sort().reverse();
     },
 
     toggleMode: (state, action) => {
@@ -30,5 +36,6 @@ const pharmSlice = createSlice({
   },
 });
 
-export const { selectPharm, searchPharm,loadList,toggleMode } = pharmSlice.actions;
+export const { selectPharm, searchPharm, loadList, sortPharm, toggleMode } =
+  pharmSlice.actions;
 export default pharmSlice.reducer;
